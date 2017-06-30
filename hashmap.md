@@ -182,6 +182,8 @@ hash方法中的二次hash感觉应该是为了让hash值能更均匀的分布�
 
 ![](http://images2015.cnblogs.com/blog/1020081/201609/1020081-20160907220904519-303306849.png)
 
+---
+
 ```java
 /**
  * Returns index for hash code h.
@@ -276,6 +278,8 @@ get\(\)和contains\(\)方法都使用了getEntry\(\)方法, getEntry\(\)是final
 
 4. 如果有有效元素则先判断当前元素的hash值, 然后用"=="判断, 这是为了配合第2步中如果key == null的情况, 最后才用 equals 判断是否相等, 如果匹配到了就返回当前的元素, 否则返回null。
 
+---
+
 ```java
 /**
  * 虽说是看HashMap的源码主要是put方法, 但是突然感觉没啥好写的
@@ -323,6 +327,8 @@ private V putForNullKey(V value) {
 1. put的时候先判断Key是否为null, 如果是null则调用 nullKey的put方法.
 2. 如果key != null, 使用hash方法\(hash方法上面有介绍,反正就是把对象映射成一个int值\)计算出key的hash值, 通过indexFor方法计算下标\(类似求余\).
 3. 剩下的就简单了, 如果当前下标 i 中已有数据就顺着链表结构往下找, 一边找一边比较\(蝌蚪找妈妈?\), 找到就替换新的value返回旧的value, 找不到就增加新的节点, 并且操作数加1.
+
+---
 
 ```java
 /**
@@ -373,6 +379,8 @@ Entry(int h, K k, V v, Entry<K,V> n) {
 1. 判断当前size是否大于threshold\(临界值\) 并且当前bucketIndex位置已经有有效元素, 则触发扩容操作\(扩容后面写\)。
 2. 把当前下标内的头结点赋给一个临时变量, 创建一个新的Entry让Entry.next-&gt;Old\_Head\_Node, 新的节点的next引用指向之前的头结点, 这样新的Entry就变成了头结点, 之前的头结点变成了头结点的下一个节点, 再把新的头结点放到table中. 这样就完成了新元素的添加.
 3. 最后 size 加 1 .
+
+---
 
 ```java
 /**
@@ -435,6 +443,8 @@ void transfer(Entry[] newTable, boolean rehash) {
 4. 调用transfer方法把table中的数据转到newTable中, 外面的for循环遍历table中的元素, 如果当前下标中元素不为null, 则while循环Entry的链表结构, 并且重新计算下标值. 这样循环完了之后会把链表尾变成了链表头. 
 5. table指向newTable.
 6. 计算新的threshold.
+
+---
 
 ```java
 /**
