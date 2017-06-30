@@ -1,4 +1,4 @@
-# none
+# Just A Learning Notes
 
-none
+nothing.
 

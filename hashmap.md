@@ -1,5 +1,3 @@
-
-
 ```java
 /**
  * 默认初始长度.这样做的原因就是因为计算机进行2次幂的运算是非常高效的
@@ -180,11 +178,9 @@ final int hash(Object k) {
 }
 ```
 
-hash方法中的二次hash感觉应该是为了让hash值能更均匀的分布在除符号位的另外31bit中进而减少hash碰撞的几率, 比如说下图\(转自http://www.cnblogs.com/rogerluo1986/p/5851300.html\)：假设 k.hashCode\(\) == 0x7FFFFFFF
+hash方法中的二次hash感觉应该是为了让hash值能更均匀的分布在除符号位的另外31bit中进而减少hash碰撞的几率, 比如说下图\(转自[http://www.cnblogs.com/rogerluo1986/p/5851300.html\)：假设](http://www.cnblogs.com/rogerluo1986/p/5851300.html%29：假设) k.hashCode\(\) == 0x7FFFFFFF
 
 ![](http://images2015.cnblogs.com/blog/1020081/201609/1020081-20160907220904519-303306849.png)
-
-
 
 ```java
 /**
@@ -372,7 +368,7 @@ Entry(int h, K k, V v, Entry<K,V> n) {
 }
 ```
 
-增加节点 : 
+增加节点 :
 
 1. 判断当前size是否大于threshold\(临界值\) 并且当前bucketIndex位置已经有有效元素, 则触发扩容操作\(扩容后面写\)。
 2. 把当前下标内的头结点赋给一个临时变量, 创建一个新的Entry让Entry.next-&gt;Old\_Head\_Node, 新的节点的next引用指向之前的头结点, 这样新的Entry就变成了头结点, 之前的头结点变成了头结点的下一个节点, 再把新的头结点放到table中. 这样就完成了新元素的添加.
