@@ -1,5 +1,3 @@
-
-
 ##### 成员属性
 
 ```java
@@ -92,8 +90,6 @@ public ArrayList(Collection<? extends E> c) {
 
 ---
 
-
-
 ##### 成员方法
 
 ```java
@@ -144,7 +140,7 @@ private void grow(int minCapacity) {
 
 扩容 - 每次扩容最小是原有长度的1.5倍，最大不能大于Integer.MAX\_VALUE。
 
-1.  获取现有长度 oldCapacity
+1. 获取现有长度 oldCapacity
 2. 计算新长度 newCapacity，oldCapacity + \(oldCapacity &gt;&gt; 1\)就相当于 oldCapacity \* 1.5\(位运算右移一位相当于 / 2，又加上原长度，所以相当于 \* 1.5\)
 
 3. 如果扩容一次的长度 newCapacity 小于传入的扩容数量则使用传入的扩容数\(就是说最小扩容量就是 长度 \* 1.5\)。
